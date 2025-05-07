@@ -473,3 +473,16 @@ Search
 Reason
 
 ChatGPT can make mistakes. Check important info.
+AI-NFT-Validator-Blockchain/
+├── README.md
+├── LICENSE
+├── requirements.txt
+├── simulation.py
+├── Validation_Results.csv
+├── docs/
+│   └── architecture.md
+├── tests/
+│   ├── test_blockchain.py
+│   ├── test_nft_validator.py
+│   └── test_transactions.py
+└── .gitignore
