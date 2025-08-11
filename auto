@@ -1,0 +1,36 @@
+# .github/workflows/devops-nexus.yml
+name: Andrew-Lee-Cruz Autonomous DevOps System
+
+on:
+  # This workflow is triggered every day at 02:00 AM UTC.
+  # This provides a consistent, autonomous maintenance schedule.
+  schedule:
+    - cron: '0 2 * * *'
+  # Allows you to run this workflow manually from the Actions tab.
+  workflow_dispatch:
+
+jobs:
+  run-nexus:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          pip install requests
+
+      - name: Run the DevOpsNexus Automation Script
+        run: python devops_nexus_script.py
+        env:
+          # Your secrets are securely passed to the script here.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
+          CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+
